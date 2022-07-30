@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<title>KEA</title>
+
+		<style>
+#div1, #div2, #div3 {
+	position: absolute;
+	background-repeat: no-repeat;
+	aspect-ratio: 1/1;
+	width: 10em;
+	animation: anim;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+#div1 {
+	top: 0em;
+	background-image: url("img1.png");
+	animation-delay: 0.4s;
+}
+
+#div2 {
+	top: 10em;
+	background-image: url("img2.png");
+	animation-delay: 0.8s;
+}
+
+#div3 {
+	top: 20em;
+	background-image: url("img3.png");
+	animation-delay: 1s;
+}
+
+.pos1 {
+	left: 10em;
+}
+
+.pos2 {
+	left: 20em;
+}
+
+.pos3 {
+	left: 30em;
+}
+
+@keyframes anim {
+	90% {transform: scale(100%);}
+	100% {transform: scale(40%);}
+}
+
+@keyframes anim2 {
+	from { transform: translate(0%, 50%) rotate(0deg); }
+	to { transform: translate(100%, 50%) rotate(180deg); }
+}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">image1</div>
+		<div id="div2">image2</div>
+		<div id="div3">image3</div>
+	</body>
+
+	<!--<div id="container1" class="pos1">-->
+		<!--<div id="sprite1" class="animation1"></div>-->
+	<!--</div>-->
+
+	<script>
+		function generate_random_position() {
+			let random_number = Math.floor(Math.random() * 3 + 1);
+			let random_position = "pos" + random_number;
+			return random_position ;
+		}
+
+		function change_position() {
+			this.classList = "";
+			this.classList.add(generate_random_position());
+		}
+
+		document.querySelector('#div1').classList.add(generate_random_position())
+		document.querySelector('#div2').classList.add(generate_random_position())
+		document.querySelector('#div3').classList.add(generate_random_position())
+
+		document.querySelector('#div1').addEventListener('animationiteration', change_position);
+		document.querySelector('#div2').addEventListener('animationiteration', change_position);
+		document.querySelector('#div3').addEventListener('animationiteration', change_position);
+	</script>
+</html>
